@@ -13,29 +13,29 @@ class CartItem extends React.Component{
     }
 
     increaseQuentity=()=>{
-        console.log(this.state);
+        
         this.setState((prevState)=>{
             return{
                 qty:prevState.qty+1,
             }
-            
-        });
+        },()=>{console.log(this.state);});
+        
     }
     decreaseQuentity=()=>{
         console.log('decreasing');
-        this.setState((prevState)=>{
-            if(prevState.qty>0){
-                return{
-                    qty:prevState.qty-1,
-                }
-            }else{
-                return;
+        const {qty} = this.state;
+        if(qty<=0)
+            return;
+        this.setState((prevState)=>{     
+            return{
+                qty:prevState.qty-1,
             }
         })
     }
 
     render(){
         const{qty,tital,price}=this.state;
+        console.log('rendered----------------------------');
         return(
             <div className='cart-item'>
                 <div className="left-block">
