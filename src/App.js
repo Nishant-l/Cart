@@ -1,6 +1,7 @@
 import React from 'react';
 import Cart from './cart'
 import NavBar from './NavBar';
+import Total from './footer'
 
 
 class App extends React.Component {
@@ -9,27 +10,27 @@ class App extends React.Component {
     this.state={
         products:[
             {   price:5000,
-                tital:'phone',
+                tital:'Phone',
                 qty:1,
-                img:'',
+                img:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1100&q=80',
                 id:1
             },
             {   price:1000,
-                tital:'charger',
+                tital:'Charger',
                 qty:2,
-                img:'',
+                img:'https://images.unsplash.com/photo-1586254116648-d33e0fada133?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
                 id:2
             },
-            {   price:500,
-                tital:'earphone',
+            {   price:5000,
+                tital:'EarPhone',
                 qty:5,
-                img:'',
+                img:'https://images.unsplash.com/photo-1578319439584-104c94d37305?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
                 id:3
             },
-            {   price:4,
-                tital:'simCard',
+            {   price:7000,
+                tital:'Headphone',
                 qty:1,
-                img:'',
+                img:'https://images.unsplash.com/photo-1487215078519-e21cc028cb29?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80',
                 id:4
             }
         ]
@@ -63,6 +64,12 @@ countTotalQty=()=>{
   console.log(count);
   return count;
 }
+
+countTotalAmount=()=>{
+  const {products}=this.state;
+  const total=products.reduce((acc,product)=>acc+=(product.qty*product.price),0);
+  return total;
+}
   render(){
     return (
       <div className="App">
@@ -75,6 +82,7 @@ countTotalQty=()=>{
           onDecQty={this.handelDecreaseQty}
           onDelete={this.handelDelete}
         />
+        <Total total={this.countTotalAmount()}/>
       </div>
     );
   }
