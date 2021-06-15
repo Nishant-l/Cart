@@ -14,9 +14,24 @@ class CartItem extends React.Component{
 
     increaseQuentity=()=>{
         console.log(this.state);
+        this.setState((prevState)=>{
+            return{
+                qty:prevState.qty+1,
+            }
+            
+        });
     }
     decreaseQuentity=()=>{
         console.log('decreasing');
+        this.setState((prevState)=>{
+            if(prevState.qty>0){
+                return{
+                    qty:prevState.qty-1,
+                }
+            }else{
+                return;
+            }
+        })
     }
 
     render(){
